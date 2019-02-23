@@ -36,6 +36,6 @@ describe('topic actions', () => {
       columnId: 2,
     };
 
-    expect(actions.moveTopic(1,2)).toEqual(expectedAction);
-  })
+    expect(actions.moveTopic(1, 2)).toEqual(expectedAction);
+  });
 });

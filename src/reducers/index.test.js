@@ -9,7 +9,7 @@ const createNewTopic = () => {
     id,
     votes: 0,
     topic: '20% Time',
-    columnId: 0
+    columnId: 0,
   };
 };
 
@@ -27,17 +27,14 @@ describe('topic reducer', () => {
   });
 
   it('should add a topic', () => {
-    expect(reducer(undefined, {
+    const newState = reducer(undefined, {
       type: types.ADD_TOPIC,
       topic: '20% Time',
-    })).toEqual({
-      topics: [{
-        topic: '20% Time',
-        id: 1,
-        votes: 0,
-        columnId:0
-      }],
     });
+
+    expect(newState.topics[0].topic).toEqual('20% Time');
+    expect(newState.topics[0].columnId).toEqual(types.TO_DISCUSS_COLUMN);
+    expect(newState.topics[0].votes).toEqual(0);
   });
 
   it('should increase the votes by 1', () => {
@@ -74,18 +71,18 @@ describe('topic reducer', () => {
 
   it('should move the topic to a new column', () => {
     const initalState = {
-      topics: [topic]
+      topics: [topic],
     };
 
     expect(reducer(initalState, {
       type: types.MOVE_TOPIC,
       topicId: topic.id,
-      columnId: 3
+      columnId: 3,
     })).toEqual({
       topics: [{
         ...topic,
-        columnId: 3
-      }]
+        columnId: 3,
+      }],
     });
-  })
+  });
 });

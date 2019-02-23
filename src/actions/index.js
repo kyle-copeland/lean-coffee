@@ -1,4 +1,6 @@
-import { ADD_TOPIC, VOTE_FOR_TOPIC, SORT_TOPICS, MOVE_TOPIC } from '../constants';
+import {
+  ADD_TOPIC, VOTE_FOR_TOPIC, SORT_TOPICS, MOVE_TOPIC,
+} from '../constants';
 
 export const addTopic = topic => ({
   type: ADD_TOPIC,
@@ -17,5 +19,5 @@ export const sortTopics = () => ({
 export const moveTopic = (topicId, columnId) => ({
   type: MOVE_TOPIC,
   topicId,
-  columnId
+  columnId,
 });

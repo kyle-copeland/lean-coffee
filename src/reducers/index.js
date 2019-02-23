@@ -1,6 +1,8 @@
+import uniqid from 'uniqid';
 import {
-  ADD_TOPIC, VOTE_FOR_TOPIC, SORT_TOPICS, MOVE_TOPIC,
+  ADD_TOPIC, VOTE_FOR_TOPIC, SORT_TOPICS, MOVE_TOPIC, TO_DISCUSS_COLUMN,
 } from '../constants';
+
 
 const initialState = {
   topics: [],
@@ -12,9 +14,9 @@ function leanCoffeeApp(state = initialState, action) {
       return Object.assign({}, state, {
         topics: [...state.topics, {
           topic: action.topic,
-          id: 1,
+          id: uniqid(),
           votes: 0,
-          columnId: 0
+          columnId: TO_DISCUSS_COLUMN,
         }],
       });
     case VOTE_FOR_TOPIC: {
@@ -41,14 +43,14 @@ function leanCoffeeApp(state = initialState, action) {
       };
     }
     case MOVE_TOPIC: {
-      const newTopics = state.topics.map(topic => {
-        if(action.topicId !== topic.id) {
+      const newTopics = state.topics.map((topic) => {
+        if (action.topicId !== topic.id) {
           return topic;
         }
 
         return {
           ...topic,
-          columnId: action.columnId
+          columnId: action.columnId,
         };
       });
       return {
