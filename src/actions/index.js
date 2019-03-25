@@ -16,8 +16,11 @@ export const sortTopics = () => ({
   type: SORT_TOPICS,
 });
 
-export const moveTopic = (topicId, columnId) => ({
-  type: MOVE_TOPIC,
-  topicId,
-  columnId,
-});
+export const moveTopic = (topicId, columnId) => {
+  console.log(topicId, columnId);
+  return {
+    type: MOVE_TOPIC,
+    topicId,
+    columnId,
+  };
+};

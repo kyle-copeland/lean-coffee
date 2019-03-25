@@ -2,20 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Column from '../containers/Column';
 
-const Board = ({ topics }) => (
+const renderColumns = columns => columns.map(column => (
+  <Column
+    key={column.id}
+    id={column.id}
+    title={column.title}
+    showAddTopic={column.showAddTopic}
+    topics={column.topics}
+  />
+));
+
+const Board = ({ columns }) => (
   <div className="Board">
-    <Column title="To Discuss" showAddTopic="true" topics={topics.toDiscuss} />
-    <Column title="Discussion" topics={topics.discussion} />
-    <Column title="Discussed" topics={topics.discussed} />
+    {renderColumns(columns)}
   </div>
 );
 
 Board.propTypes = {
-  topics: PropTypes.shape({
-    toDiscuss: PropTypes.array,
-    discussion: PropTypes.array,
-    discussed: PropTypes.array,
-  }).isRequired,
+  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Board;

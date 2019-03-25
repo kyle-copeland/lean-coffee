@@ -1,19 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { DropTarget } from 'react-dnd';
 import Topic from '../containers/Topic';
 import AddTopic from './AddTopic';
+import { ItemTypes } from '../constants/dnd-constants';
+import { moveTopic } from '../actions';
+
+const columnTarget = {
+  drop(props, monitor) {
+    props.handleMoveTopic(monitor.getItem().id, props.id);
+  },
+};
+
+const collect = (connect, monitor) => ({
+  connectDropTarget: connect.dropTarget(),
+  isOver: monitor.isOver(),
+});
 
 const Column = ({
-  title, showAddTopic, topics, onAddTopicClick,
+  title, showAddTopic, topics, onAddTopicClick, connectDropTarget,
 }) => {
   const topicList = topics.map(topic => <Topic {...topic} />);
 
-  return (
+  return connectDropTarget(
     <div className="Column">
       <h1>{title}</h1>
       {showAddTopic && <AddTopic onAddTopicClick={onAddTopicClick} />}
       <ul>{topicList}</ul>
-    </div>
+    </div>,
   );
 };
 
@@ -27,6 +41,7 @@ Column.propTypes = {
   onAddTopicClick: PropTypes.func.isRequired,
   showAddTopic: PropTypes.bool,
   topics: PropTypes.arrayOf(Object),
+  connectDropTarget: PropTypes.func.isRequired,
 };
 
-export default Column;
+export default DropTarget(ItemTypes.TOPIC, columnTarget, collect)(Column);
