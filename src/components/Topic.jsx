@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DragSource } from 'react-dnd';
+import { List, Icon } from 'antd';
+import { findDOMNode } from 'react-dom';
 import { ItemTypes } from '../constants/dnd-constants';
 
 const topicSource = {
@@ -11,6 +13,13 @@ const topicSource = {
   },
 };
 
+const IconText = ({ votes, onClick }) => (
+  <span role="button" onClick={onClick}>
+    <Icon type="like" style={{ marginRight: 8 }} />
+    {votes}
+  </span>
+);
+
 const collect = (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging(),
@@ -18,21 +27,17 @@ const collect = (connect, monitor) => ({
 
 const Topic = ({
   id, topic, votes, onVoteForTopicClick, connectDragSource, isDragging,
-}) => connectDragSource(
-  <li
+}) => (
+  <List.Item
+    ref={instance => connectDragSource(findDOMNode(instance))}
     key={id}
+    actions={[<IconText type="star-0" votes={votes} onClick={() => onVoteForTopicClick(id)} />]}
     style={{
       opacity: isDragging ? 0.5 : 1,
     }}
   >
     {topic}
-    <span>
-      {' '}
-        Votes:
-      {votes}
-    </span>
-    <button type="button" onClick={() => onVoteForTopicClick(id)}>Add Vote</button>
-  </li>,
+  </List.Item>
 );
 
 Topic.defaultProps = {

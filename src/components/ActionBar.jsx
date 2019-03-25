@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'antd';
 
 const ActionBar = ({ onSortTopicsClick }) => (
-  <div>
-    <button type="button" onClick={() => onSortTopicsClick()}>Sort Topics</button>
-  </div>
+  <Button block htmlType="button" onClick={() => onSortTopicsClick()}>Sort Topics</Button>
 );
 
 ActionBar.propTypes = {

@@ -1,9 +1,9 @@
-.Board {
-  text-align: center;
-  display: grid;
-  grid-template-columns: 33% 33% 33%;
+@import '~antd/dist/antd.css';
+
+.Title {
+  color: white;
 }
 
-.Column {
-  background-color: aqua;
+.Board {
+  text-align: center;
 }

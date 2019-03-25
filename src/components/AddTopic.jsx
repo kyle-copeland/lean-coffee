@@ -1,26 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Form, Input, Button } from 'antd';
 
-const AddTopic = ({ onAddTopicClick }) => {
+const AddTopic = ({ onAddTopicClick, form }) => {
   let input;
   return (
-    <form
+    <Form
+      layout="inline"
       onSubmit={(e) => {
         e.preventDefault();
-        if (!input.value.trim()) {
+        if (!input || !input.value.trim()) {
           return;
         }
         onAddTopicClick(input.value);
-        input.value = '';
       }}
     >
-      <input
-        ref={(node) => {
-          input = node;
+      <Form.Item>
+        <Input onChange={(e) => {
+          input = e.target;
         }}
-      />
-      <button type="submit">Add Topic</button>
-    </form>
+        />
+      </Form.Item>
+      <Form.Item>
+        <Button htmlType="submit">Add Topic</Button>
+      </Form.Item>
+    </Form>
   );
 };
 

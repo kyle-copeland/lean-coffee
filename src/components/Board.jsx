@@ -1,20 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Row, Col } from 'antd';
 import Column from '../containers/Column';
 
 const renderColumns = columns => columns.map(column => (
-  <Column
-    key={column.id}
-    id={column.id}
-    title={column.title}
-    showAddTopic={column.showAddTopic}
-    topics={column.topics}
-  />
+  <Col span={8}>
+    <Column
+      key={column.id}
+      id={column.id}
+      title={column.title}
+      showAddTopic={column.showAddTopic}
+      topics={column.topics}
+    />
+  </Col>
 ));
 
 const Board = ({ columns }) => (
   <div className="Board">
-    {renderColumns(columns)}
+    <Row>
+      {renderColumns(columns)}
+    </Row>
   </div>
 );
 

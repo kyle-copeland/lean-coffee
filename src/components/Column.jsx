@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
+import { List } from 'antd';
 import Topic from '../containers/Topic';
 import AddTopic from './AddTopic';
 import { ItemTypes } from '../constants/dnd-constants';
-import { moveTopic } from '../actions';
 
 const columnTarget = {
   drop(props, monitor) {
@@ -26,7 +26,7 @@ const Column = ({
     <div className="Column">
       <h1>{title}</h1>
       {showAddTopic && <AddTopic onAddTopicClick={onAddTopicClick} />}
-      <ul>{topicList}</ul>
+      <List>{topicList}</List>
     </div>,
   );
 };
