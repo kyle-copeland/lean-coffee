@@ -85,4 +85,46 @@ describe('topic reducer', () => {
       }],
     });
   });
+
+  describe('NEXT_TOPIC action', () => {
+    it('should move the first topic to discussing', () => {
+      const initialState = {
+        topics: [topic],
+      };
+
+      expect(reducer(initialState, {
+        type: types.NEXT_TOPIC,
+      })).toEqual({
+        topics: [{
+          ...topic,
+          columnId: types.DISCUSSING_COLUMN,
+        }],
+      });
+    });
+
+    it('shoud move the currently discussed item to done', () => {
+      const topic2 = createNewTopic();
+      const initalState = {
+        topics: [{
+          ...topic,
+          columnId: types.TO_DISCUSS_COLUMN,
+        }, {
+          ...topic2,
+          columnId: types.DISCUSSING_COLUMN,
+        }],
+      };
+
+      expect(reducer(initalState, {
+        type: types.NEXT_TOPIC,
+      })).toEqual({
+        topics: [{
+          ...topic,
+          columnId: types.DISCUSSING_COLUMN,
+        }, {
+          ...topic2,
+          columnId: types.DISCUSSED_COLUMN,
+        }],
+      });
+    });
+  });
 });

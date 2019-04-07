@@ -1,5 +1,5 @@
 import {
-  ADD_TOPIC, VOTE_FOR_TOPIC, SORT_TOPICS, MOVE_TOPIC,
+  ADD_TOPIC, VOTE_FOR_TOPIC, SORT_TOPICS, MOVE_TOPIC, NEXT_TOPIC,
 } from '../constants';
 
 export const addTopic = topic => ({
@@ -16,11 +16,12 @@ export const sortTopics = () => ({
   type: SORT_TOPICS,
 });
 
-export const moveTopic = (topicId, columnId) => {
-  console.log(topicId, columnId);
-  return {
-    type: MOVE_TOPIC,
-    topicId,
-    columnId,
-  };
-};
+export const moveTopic = (topicId, columnId) => ({
+  type: MOVE_TOPIC,
+  topicId,
+  columnId,
+});
+
+export const nextTopic = () => ({
+  type: NEXT_TOPIC,
+});

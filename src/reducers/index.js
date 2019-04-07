@@ -1,6 +1,6 @@
 import uniqid from 'uniqid';
 import {
-  ADD_TOPIC, VOTE_FOR_TOPIC, SORT_TOPICS, MOVE_TOPIC, TO_DISCUSS_COLUMN,
+  ADD_TOPIC, VOTE_FOR_TOPIC, SORT_TOPICS, MOVE_TOPIC, TO_DISCUSS_COLUMN, DISCUSSING_COLUMN, NEXT_TOPIC, DISCUSSED_COLUMN,
 } from '../constants';
 
 
@@ -52,6 +52,30 @@ function leanCoffeeApp(state = initialState, action) {
           ...topic,
           columnId: action.columnId,
         };
+      });
+      return {
+        ...state,
+        topics: newTopics,
+      };
+    }
+    case NEXT_TOPIC: {
+      const nextTopic = state.topics.filter(topic => topic.columnId === TO_DISCUSS_COLUMN)[0];
+
+      const newTopics = state.topics.map((topic) => {
+        if (topic.id === nextTopic.id) {
+          return {
+            ...topic,
+            columnId: DISCUSSING_COLUMN,
+          };
+        }
+
+        if (topic.columnId === DISCUSSING_COLUMN) {
+          return {
+            ...topic,
+            columnId: DISCUSSED_COLUMN,
+          };
+        }
+        return topic;
       });
       return {
         ...state,

@@ -38,4 +38,12 @@ describe('topic actions', () => {
 
     expect(actions.moveTopic(1, 2)).toEqual(expectedAction);
   });
+
+  it('should change to the next topic', () => {
+    const expectedAction = ({
+      type: types.NEXT_TOPIC,
+    });
+
+    expect(actions.nextTopic()).toEqual(expectedAction);
+  });
 });

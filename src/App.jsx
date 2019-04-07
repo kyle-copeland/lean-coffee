@@ -13,7 +13,7 @@ const App = () => (
           <Col span={12}>
             <h1 className="Title">Lean Coffee ☕</h1>
           </Col>
-          <Col span={12}>
+          <Col span={6} offset={6}>
             <ActionBar />
           </Col>
         </Row>

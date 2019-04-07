@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Input, Button } from 'antd';
 
-const AddTopic = ({ onAddTopicClick, form }) => {
+const AddTopic = ({ onAddTopicClick }) => {
   let input;
   return (
     <Form

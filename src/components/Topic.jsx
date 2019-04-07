@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DragSource } from 'react-dnd';
-import { List, Icon } from 'antd';
+import { List, Icon, Card } from 'antd';
 import { findDOMNode } from 'react-dom';
 import { ItemTypes } from '../constants/dnd-constants';
 
@@ -31,12 +31,20 @@ const Topic = ({
   <List.Item
     ref={instance => connectDragSource(findDOMNode(instance))}
     key={id}
-    actions={[<IconText type="star-0" votes={votes} onClick={() => onVoteForTopicClick(id)} />]}
     style={{
       opacity: isDragging ? 0.5 : 1,
+      padding: 5,
     }}
   >
-    {topic}
+    <Card
+      style={{ width: '100%' }}
+      actions={[<IconText votes={votes} onClick={() => onVoteForTopicClick(id)} />]}
+    >
+      <Card.Meta
+        title={topic}
+      />
+    </Card>
+
   </List.Item>
 );
 
