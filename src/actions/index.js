@@ -1,5 +1,5 @@
 import {
-  ADD_TOPIC, VOTE_FOR_TOPIC, SORT_TOPICS, MOVE_TOPIC, NEXT_TOPIC,
+  ADD_TOPIC, VOTE_FOR_TOPIC, SORT_TOPICS, MOVE_TOPIC, NEXT_TOPIC, INIT_SOCKET_IO,
 } from '../constants';
 
 export const addTopic = topic => ({
@@ -24,4 +24,8 @@ export const moveTopic = (topicId, columnId) => ({
 
 export const nextTopic = () => ({
   type: NEXT_TOPIC,
+});
+
+export const initSocketIo = () => ({
+  type: INIT_SOCKET_IO,
 });

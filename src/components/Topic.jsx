@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DragSource } from 'react-dnd';
 import { List, Icon, Card } from 'antd';
-import { findDOMNode } from 'react-dom';
 import { ItemTypes } from '../constants/dnd-constants';
 
 const topicSource = {
@@ -14,22 +13,25 @@ const topicSource = {
 };
 
 const IconText = ({ votes, onClick }) => (
-  <span role="button" onClick={onClick}>
+  <button type="button" onClick={onClick}>
     <Icon type="like" style={{ marginRight: 8 }} />
     {votes}
-  </span>
+  </button>
 );
 
+IconText.propTypes = {
+  votes: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 const collect = (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging(),
 });
 
 const Topic = ({
-  id, topic, votes, onVoteForTopicClick, connectDragSource, isDragging,
+  id, topic, votes, onVoteForTopicClick, isDragging,
 }) => (
   <List.Item
-    ref={instance => connectDragSource(findDOMNode(instance))}
     key={id}
     style={{
       opacity: isDragging ? 0.5 : 1,
@@ -57,7 +59,6 @@ Topic.propTypes = {
   id: PropTypes.string.isRequired,
   topic: PropTypes.string.isRequired,
   votes: PropTypes.number,
-  connectDragSource: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
 };
 

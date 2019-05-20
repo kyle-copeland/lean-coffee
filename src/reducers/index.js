@@ -1,6 +1,8 @@
 import uniqid from 'uniqid';
 import {
-  ADD_TOPIC, VOTE_FOR_TOPIC, SORT_TOPICS, MOVE_TOPIC, TO_DISCUSS_COLUMN, DISCUSSING_COLUMN, NEXT_TOPIC, DISCUSSED_COLUMN,
+  ADD_TOPIC, VOTE_FOR_TOPIC, SORT_TOPICS, MOVE_TOPIC,
+  TO_DISCUSS_COLUMN, DISCUSSING_COLUMN, NEXT_TOPIC,
+  DISCUSSED_COLUMN, SYNC_STATE,
 } from '../constants';
 
 
@@ -81,6 +83,9 @@ function leanCoffeeApp(state = initialState, action) {
         ...state,
         topics: newTopics,
       };
+    }
+    case SYNC_STATE: {
+      return action.state;
     }
     default:
       return state;

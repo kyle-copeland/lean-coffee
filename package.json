@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.15.2",
+    "express": "^4.16.4",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
     "react-dnd": "^7.3.2",
@@ -12,15 +13,19 @@
     "react-redux": "^6.0.1",
     "react-scripts": "^2.1.8",
     "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
     "uniqid": "^5.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "nodemon server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.js src/**/*.jsx",
-    "lint:fix": "eslint src/**/*.js src/**/*.jsx --fix"
+    "lint": "eslint server.js src/**/*.js src/**/*.jsx",
+    "lint:fix": "eslint server.js src/**/*.js src/**/*.jsx --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,6 +40,7 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4"
+    "eslint-plugin-react": "^7.12.4",
+    "nodemon": "^1.18.10"
   }
 }

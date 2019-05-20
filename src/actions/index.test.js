@@ -46,4 +46,12 @@ describe('topic actions', () => {
 
     expect(actions.nextTopic()).toEqual(expectedAction);
   });
+
+  it('should initialize socket.io', () => {
+    const expectedAction = ({
+      type: types.INIT_SOCKET_IO,
+    });
+
+    expect(actions.initSocketIo()).toEqual(expectedAction);
+  });
 });
