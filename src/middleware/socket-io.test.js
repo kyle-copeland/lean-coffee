@@ -54,6 +54,6 @@ describe('socket.io middleware', () => {
       server: true,
     };
     middleware(store)(next)(action);
-    expect(mockSocketEmit).not.toHaveBeenCalled();
+    expect(mockSocketEmit).not.toHaveBeenCalledWith('action', action);
   });
 });
