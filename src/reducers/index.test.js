@@ -44,7 +44,7 @@ describe('topic reducer', () => {
 
     expect(reducer(initalState, {
       type: types.VOTE_FOR_TOPIC,
-      id: topic.id,
+      topic: topic.topic,
     })).toEqual({
       topics: [{
         ...topic,

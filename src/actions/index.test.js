@@ -16,9 +16,10 @@ describe('topic actions', () => {
   it('should increase the vote count', () => {
     const expectedAction = {
       type: types.VOTE_FOR_TOPIC,
+      topic: 'Equal Rights',
     };
 
-    expect(actions.voteForTopic()).toEqual(expectedAction);
+    expect(actions.voteForTopic('Equal Rights')).toEqual(expectedAction);
   });
 
   it('should sort the topics', () => {
@@ -32,11 +33,11 @@ describe('topic actions', () => {
   it('should move the topic to a new column', () => {
     const expectedAction = {
       type: types.MOVE_TOPIC,
-      topicId: 1,
+      topic: '20% Time',
       columnId: 2,
     };
 
-    expect(actions.moveTopic(1, 2)).toEqual(expectedAction);
+    expect(actions.moveTopic('20% Time', 2)).toEqual(expectedAction);
   });
 
   it('should change to the next topic', () => {

@@ -29,10 +29,10 @@ const collect = (connect, monitor) => ({
 });
 
 const Topic = ({
-  id, topic, votes, onVoteForTopicClick, isDragging,
+  topic, votes, onVoteForTopicClick, isDragging,
 }) => (
   <List.Item
-    key={id}
+    key={topic}
     style={{
       opacity: isDragging ? 0.5 : 1,
       padding: 5,
@@ -40,7 +40,7 @@ const Topic = ({
   >
     <Card
       style={{ width: '100%' }}
-      actions={[<IconText votes={votes} onClick={() => onVoteForTopicClick(id)} />]}
+      actions={[<IconText votes={votes} onClick={() => onVoteForTopicClick(topic)} />]}
     >
       <Card.Meta
         title={topic}
@@ -56,7 +56,6 @@ Topic.defaultProps = {
 
 Topic.propTypes = {
   onVoteForTopicClick: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
   topic: PropTypes.string.isRequired,
   votes: PropTypes.number,
   isDragging: PropTypes.bool.isRequired,

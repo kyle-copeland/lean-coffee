@@ -6,17 +6,21 @@ app.get('/', (req, res) => {
   res.sendFile(`${__dirname}/index.html`);
 });
 
+const actions = [];
 io.on('connection', (socket) => {
-  console.log('USER CONNECTED');
+  actions.forEach((action) => {
+    socket.emit('action', action);
+  });
 
   socket.on('action', (msg) => {
-    socket.broadcast.emit('action', {
+    const actionFromServer = {
       ...msg,
       server: true,
-    });
+    };
+    actions.push(actionFromServer);
+    socket.broadcast.emit('action', actionFromServer);
   });
 });
 
 http.listen(3030, () => {
-  console.log('listening on *:3030');
 });

@@ -7,18 +7,18 @@ export const addTopic = topic => ({
   topic,
 });
 
-export const voteForTopic = id => ({
+export const voteForTopic = topic => ({
   type: VOTE_FOR_TOPIC,
-  id,
+  topic,
 });
 
 export const sortTopics = () => ({
   type: SORT_TOPICS,
 });
 
-export const moveTopic = (topicId, columnId) => ({
+export const moveTopic = (topic, columnId) => ({
   type: MOVE_TOPIC,
-  topicId,
+  topic,
   columnId,
 });
 
